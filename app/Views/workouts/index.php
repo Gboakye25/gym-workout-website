@@ -5,9 +5,9 @@
 <p>Here are some gym workouts:</p>
 
 <ul>
-    <li>Chest Workout</li>
-    <li>Leg Workout</li>
-    <li>Back Workout</li>
+    <?php foreach ($workouts as $workout): ?>
+        <li><?= esc($workout['name']) ?></li>
+    <?php endforeach; ?>
 </ul>
 
 <?= $this->include('layouts/footer') ?>
