@@ -7,6 +7,11 @@
 
 <header>
     <h1>Gym Workout Website</h1>
+
+    <nav>
+        <a href="/">Home</a> |
+        <a href="/about">About</a>
+    </nav>
 </header>
 
 <hr>
