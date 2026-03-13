@@ -9,11 +9,10 @@ class Workout extends BaseController
         $data = [
             'title' => 'Workout List',
             'workouts' => [
-                ['name' => 'Chest Workout'],
-                ['name' => 'Leg Workout'],
-                ['name' => 'Back Workout']
-            ]
-        ];
+    ['slug' => 'chest-workout', 'name' => 'Chest Workout'],
+    ['slug' => 'leg-workout', 'name' => 'Leg Workout'],
+    ['slug' => 'back-workout', 'name' => 'Back Workout']
+]
 
         return view('workouts/index', $data);
     }

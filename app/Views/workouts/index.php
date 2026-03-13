@@ -6,7 +6,11 @@
 
 <ul>
     <?php foreach ($workouts as $workout): ?>
-        <li><?= esc($workout['name']) ?></li>
+        <li>
+            <a href="/workouts/<?= esc($workout['slug']) ?>">
+                <?= esc($workout['name']) ?>
+            </a>
+        </li>
     <?php endforeach; ?>
 </ul>
 
