@@ -7,3 +7,4 @@ use CodeIgniter\Router\RouteCollection;
  */
 $routes->get('/', 'Pages::home');
 $routes->get('about', 'Pages::about');
+$routes->get('workouts', 'Workout::index');
