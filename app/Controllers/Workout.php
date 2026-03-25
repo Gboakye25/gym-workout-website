@@ -2,17 +2,18 @@
 
 namespace App\Controllers;
 
+use App\Models\WorkoutModel;
+use CodeIgniter\Exceptions\PageNotFoundException;
+
 class Workout extends BaseController
 {
     public function index()
     {
+        $model = new WorkoutModel();
+
         $data = [
             'title' => 'Workout List',
-            'workouts' => [
-                ['slug' => 'chest-workout', 'name' => 'Chest Workout'],
-                ['slug' => 'leg-workout', 'name' => 'Leg Workout'],
-                ['slug' => 'back-workout', 'name' => 'Back Workout']
-            ]
+            'workouts' => $model->findAll()
         ];
 
         return view('workouts/index', $data);
@@ -20,28 +21,17 @@ class Workout extends BaseController
 
     public function view($slug = null)
     {
-        $workouts = [
-            'chest-workout' => [
-                'name' => 'Chest Workout',
-                'description' => 'This workout focuses on building chest strength.'
-            ],
-            'leg-workout' => [
-                'name' => 'Leg Workout',
-                'description' => 'This workout focuses on lower body strength.'
-            ],
-            'back-workout' => [
-                'name' => 'Back Workout',
-                'description' => 'This workout focuses on back and posture.'
-            ]
-        ];
+        $model = new WorkoutModel();
 
-        if (! array_key_exists($slug, $workouts)) {
-            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
+        $workout = $model->where('slug', $slug)->first();
+
+        if (! $workout) {
+            throw PageNotFoundException::forPageNotFound();
         }
 
         $data = [
-            'title' => $workouts[$slug]['name'],
-            'workout' => $workouts[$slug]
+            'title' => $workout['name'],
+            'workout' => $workout
         ];
 
         return view('workouts/view', $data);
